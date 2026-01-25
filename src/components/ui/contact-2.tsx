@@ -21,64 +21,89 @@ export const Contact2 = ({
   web = { label: "shadcnblocks.com", url: "https://shadcnblocks.com" },
 }: Contact2Props) => {
   return (
-    <section className="py-32">
-      <div className="container">
-        <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
-          <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">
-            <div className="text-center lg:text-left">
-              <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl">
-                {title}
-              </h1>
-              <p className="text-muted-foreground">{description}</p>
-            </div>
-            <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
-                Contact Details
-              </h3>
-              <ul className="ml-4 list-disc">
-                <li>
-                  <span className="font-bold">Phone: </span>
-                  {phone}
-                </li>
-                <li>
-                  <span className="font-bold">Email: </span>
-                  <a href={`mailto:${email}`} className="underline">
-                    {email}
-                  </a>
-                </li>
-                <li>
-                  <span className="font-bold">Web: </span>
-                  <a href={web.url} target="_blank" className="underline">
-                    {web.label}
-                  </a>
-                </li>
-              </ul>
-            </div>
+    <section className="py-16">
+      <div className="container max-w-4xl">
+        <div className="mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="mb-4 text-3xl font-bold lg:text-4xl">
+              Send Us a Message
+            </h1>
+            <p className="text-gray-600 text-base">
+              Please fill in the form below to get in touch with us.
+            </p>
           </div>
-          <div className="mx-auto flex max-w-screen-md flex-col gap-6 rounded-lg border p-10">
-            <div className="flex gap-4">
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="firstname">First Name</Label>
-                <Input type="text" id="firstname" placeholder="First Name" />
+          
+          {/* Form */}
+          <div className="max-w-2xl mx-auto">
+            <div className="space-y-6">
+              {/* Name Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Input 
+                    type="text" 
+                    placeholder="First name" 
+                    className="w-full px-4 py-3 bg-gray-100 border-0 rounded-lg text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+                <div>
+                  <Input 
+                    type="text" 
+                    placeholder="Last name" 
+                    className="w-full px-4 py-3 bg-gray-100 border-0 rounded-lg text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all"
+                  />
+                </div>
               </div>
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="lastname">Last Name</Label>
-                <Input type="text" id="lastname" placeholder="Last Name" />
+              
+              {/* Contact Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Input 
+                    type="email" 
+                    placeholder="Email address" 
+                    className="w-full px-4 py-3 bg-gray-100 border-0 rounded-lg text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+                <div>
+                  <Input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    className="w-full px-4 py-3 bg-gray-100 border-0 rounded-lg text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+              </div>
+              
+              {/* Message */}
+              <div>
+                <Textarea 
+                  placeholder="Message" 
+                  rows={6}
+                  className="w-full px-4 py-3 bg-gray-100 border-0 rounded-lg text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                />
+              </div>
+              
+              {/* Terms Checkbox */}
+              <div className="flex items-start gap-3">
+                <input 
+                  type="checkbox" 
+                  id="terms" 
+                  className="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <label htmlFor="terms" className="text-sm text-gray-600">
+                  I've read and agree with{' '}
+                  <a href="#" className="text-blue-600 hover:underline">Terms of Service</a>
+                  {' '}and{' '}
+                  <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
+                </label>
+              </div>
+              
+              {/* Submit Button */}
+              <div>
+                <Button className="w-full md:w-auto px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors font-medium">
+                  Submit
+                </Button>
               </div>
             </div>
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="email">Email</Label>
-              <Input type="email" id="email" placeholder="Email" />
-            </div>
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="subject">Subject</Label>
-              <Input type="text" id="subject" placeholder="Subject" />
-            </div>
-            <div className="grid w-full gap-1.5">
-              <Label htmlFor="message">Message</Label>
-              <Textarea placeholder="Type your message here." id="message" />
-            </div>
-            <Button className="w-full">Send Message</Button>
           </div>
         </div>
       </div>

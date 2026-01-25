@@ -68,15 +68,6 @@ export default function Hero() {
               <span className="relative z-10">View My Work</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
             </motion.a>
-            
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group px-8 py-4 bg-white text-gray-900 font-medium rounded-full shadow-lg hover:shadow-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 backdrop-blur-sm"
-            >
-              Get In Touch
-            </motion.a>
           </motion.div>
         </motion.div>
 
