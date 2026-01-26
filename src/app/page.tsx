@@ -3,6 +3,7 @@ import EnhancedHero from '@/components/EnhancedHero';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
 import { ClientOnlyFooter } from '@/components/ClientOnlyFooter';
+import ContactSection from '@/components/ContactSection';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <main className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <About />
         <Projects />
+        <ContactSection />
       </main>
       <ClientOnlyFooter />
     </div>
