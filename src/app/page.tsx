@@ -12,6 +12,9 @@ export default function Home() {
       <EnhancedHero />
       <main className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <About />
+        <div className="w-full flex justify-center my-6">
+          <div className="h-1 w-16 bg-gray-200 rounded-full" />
+        </div>
         <Projects />
         <ContactSection />
       </main>

@@ -1,174 +1,142 @@
-'use client';
+"use client";
+// Reusable ExperienceCard component for internships
+type ExperienceCardProps = {
+  role: string;
+  company?: string;
+  date: string;
+  description: string;
+};
+function ExperienceCard({ role, company, date, description }: ExperienceCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+      className="relative bg-white rounded-lg p-5 shadow transition-transform duration-200 hover:shadow-lg hover:-translate-y-1 border border-gray-100"
+    >
+      {company && (
+        <div className="text-gray-900 font-bold text-base mb-1">{company}</div>
+      )}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+        <h5 className="text-base font-semibold text-gray-800">{role}</h5>
+        <div className="text-blue-600 font-semibold text-sm">{date}</div>
+      </div>
+      <p className="text-sm leading-relaxed text-gray-700">{description}</p>
+    </motion.div>
+  );
+}
 import { motion } from 'framer-motion';
+import { GraduationCap, MapPin, Briefcase } from 'lucide-react';
 
 export default function About() {
   return (
     <section
       id="about"
-      className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white text-black min-h-screen"
+      className="pb-10 pt-6 px-4 bg-gray-50 text-black" style={{ fontFamily: 'Inter, sans-serif' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Profile & Description */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            {/* Profile Card */}
-            <div className="bg-white shadow-lg border border-gray-200 rounded-xl p-6 text-center text-black max-w-md mx-auto">
-              <div className="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gray-300">
-                <img
-                  src="/images/me.jpg"
-                  alt="Tom Jimmy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-xs font-medium text-green-600">
-                  Open to Work
+          {/* Left Column - About Me & Education */}
+          <div className="space-y-8">
+            {/* About Me */}
+            <div>
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-1">About Me</h2>
+              <div className="text-gray-500 text-base mb-4">Who I am & what I build</div>
+              <p className="text-lg text-gray-800 mb-6">
+                Final-year CSE (Data Science) student passionate about building modern web apps and data solutions. I’ve worked on Spark-based ETL pipelines and responsive applications using React & Next.js.
+              </p>
+              {/* Quick Stats Row */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                <span className="inline-flex items-center gap-1 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                  <MapPin className="w-4 h-4 text-gray-500" /> Bangalore, India
+                </span>
+                <span className="inline-flex items-center gap-1 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                  <GraduationCap className="w-4 h-4 text-gray-500" /> B.Tech CSE (DS)
+                </span>
+                <span className="inline-flex items-center gap-1 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                  <Briefcase className="w-4 h-4 text-gray-500" /> Web + Data
                 </span>
               </div>
-
-              <h3 className="text-2xl font-extrabold mb-2">Tom Jimmy</h3>
-              <p className="text-gray-600 mb-3 text-sm">
-                @tomjimmy • 📍 Bangalore, India
-              </p>
-              <p className="text-gray-800 font-medium mb-4 text-sm">
-                Data Analyst & Web Developer
-              </p>
-
-              <div className="text-xs text-gray-600 mb-4">
-                <p className="font-medium">Final Year Student</p>
-                <p className="text-xs">Computer Science (Data Science)</p>
-                <div className="flex justify-center mt-2 gap-2">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                    P
-                  </div>
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                    S
-                  </div>
-                  <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                    R
-                  </div>
-                </div>
+              {/* Skills Chips */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">React</span>
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">Next.js</span>
+                <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">Apache Spark</span>
+                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">ETL</span>
+                <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">SQL</span>
+                <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold">Data Science</span>
               </div>
             </div>
-
-            {/* Description */}
-            <div className="text-center lg:text-left">
-              <h3 className="text-xl font-bold mb-3 text-gray-900">About Me</h3>
-              <p className="text-base leading-relaxed text-gray-700">
-                Final-year Computer Science Engineering (Data Science) student with
-                hands-on experience in data engineering and web development. I
-                specialize in building Apache Spark ETL pipelines, performing
-                SQL-based data transformations, and developing responsive web
-                applications using React and Next.js.
-              </p>
-            </div>
-
-            {/* Education */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">Education</h3>
-              <div className="bg-gray-100 rounded-lg p-6 shadow-md">
-                <div className="text-blue-600 font-semibold mb-2 text-sm">
-                  2022 - 2026
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-gray-900">
-                  B.Tech, Computer Science (Data Science)
-                </h4>
-                <p className="text-gray-600 font-medium mb-2 text-sm">
-                  Christ University, Bangalore, Karnataka
-                </p>
-                <p className="text-sm leading-relaxed text-gray-700">
-                  Graduating May 2026 with a <strong>7.1/10.0 CGPA</strong>. Focused
-                  on data science, machine learning, and software engineering with
-                  practical projects in data analysis and web development.
-                </p>
+            {/* Education Timeline Card */}
+            <div className="relative bg-white rounded-lg p-4 shadow-md border border-gray-200 flex flex-col gap-1">
+              <div className="flex items-center gap-2 mb-2">
+                <GraduationCap className="w-5 h-5 text-blue-600" />
+                <span className="text-lg font-bold text-gray-900">Education</span>
               </div>
+              <div className="text-gray-500 text-sm mb-2">My academic background</div>
+              <div className="flex flex-wrap gap-2 mb-2">
+                <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs font-semibold">CGPA 7.1</span>
+                <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs font-semibold">Graduating 2026</span>
+                <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs font-semibold">Christ University</span>
+              </div>
+              <div className="text-gray-900 font-semibold">B.Tech, Computer Science (Data Science)</div>
+              <div className="text-gray-500 text-xs">Bangalore, Karnataka</div>
             </div>
-          </motion.div>
-
-          {/* Right Column - Experience */}
+            {/* Certifications Card */}
+            <div className="relative bg-white rounded-lg p-4 shadow-md border border-yellow-200 flex flex-col gap-1 mt-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="inline-block w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="w-3 h-3">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 17v-6m0 0V7m0 4h4m-4 0H8" />
+                  </svg>
+                </span>
+                <span className="text-lg font-bold text-gray-900">Certifications</span>
+              </div>
+              <div className="text-gray-500 text-sm mb-2">Professional credentials & ongoing learning</div>
+              <div className="flex flex-wrap gap-2 mb-2">
+                <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs font-semibold">Google Data Analytics Professional Certificate</span>
+                <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs font-semibold">Ongoing</span>
+              </div>
+              <div className="text-gray-500 text-xs">Coursera</div>
+            </div>
+          </div>
+          {/* Right Column - Experience Timeline */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-8"
           >
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">Experience</h3>
-
-              <div className="relative pl-8">
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-1">Experience</h2>
+              <div className="text-gray-500 text-base mb-4">Internships & volunteering work</div>
+              <div className="relative pl-6">
                 {/* Vertical timeline line */}
-                <div className="absolute left-3 top-0 w-0.5 h-full bg-gray-300"></div>
-
-                <div className="space-y-6">
-                  {/* Web Development Intern */}
-                  <div className="relative bg-white rounded-lg p-6 shadow-md">
-                    {/* Timeline dot */}
-                    <div className="absolute -left-5 w-4 h-4 bg-black rounded-full border-2 border-white shadow-sm"></div>
-
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                      <h4 className="text-lg font-bold text-gray-900">
-                        AntStack <span className="text-gray-600 font-normal">- Technology Company</span>
-                      </h4>
-                      <div className="text-blue-600 font-semibold text-sm">
-                        May 2025 – Jun 2025
-                      </div>
-                    </div>
-                    <h5 className="text-base font-semibold mb-2 text-gray-800">
-                      Web Development Intern
-                    </h5>
-                    <p className="text-sm leading-relaxed text-gray-700">
-                      Developed responsive web applications using HTML, CSS, and
-                      JavaScript. Implemented reusable UI components and optimized
-                      page layouts for better performance and user experience.
-                    </p>
-                  </div>
-
-                  {/* Data Engineering Intern */}
-                  <div className="relative bg-white rounded-lg p-6 shadow-md">
-                    {/* Timeline dot */}
-                    <div className="absolute -left-5 w-4 h-4 bg-black rounded-full border-2 border-white shadow-sm"></div>
-
-                    <div className="text-blue-600 font-semibold mb-2 text-sm">
-                      Apr 2024 – Jul 2024
-                    </div>
-                    <h5 className="text-base font-semibold mb-2 text-gray-800">
-                      Data Engineering Intern
-                    </h5>
-                    <p className="text-sm leading-relaxed text-gray-700">
-                      Built and executed Apache Spark ETL pipelines on Databricks to
-                      process large-scale datasets. Performed SQL-based
-                      transformations and implemented data validation checks,
-                      improving reliability of downstream analytics workflows.
-                    </p>
-                  </div>
-
-                  {/* Volunteer Experience */}
-                  <div className="relative bg-white rounded-lg p-6 shadow-md">
-                    {/* Timeline dot */}
-                    <div className="absolute -left-5 w-4 h-4 bg-black rounded-full border-2 border-white shadow-sm"></div>
-
-                    <div className="text-blue-600 font-semibold mb-2 text-sm">
-                      Nov 2024 – Mar 2025
-                    </div>
-                    <h5 className="text-base font-semibold mb-2 text-gray-800">
-                      Web Developer - Keraleeyam (Volunteer)
-                    </h5>
-                    <p className="text-sm leading-relaxed text-gray-700">
-                      Developed and deployed a website for a school supporting
-                      underprivileged children. Implemented responsive design and
-                      accessibility-focused UI components to improve online
-                      visibility.
-                    </p>
-                  </div>
+                <div className="absolute left-1.5 top-0 w-px h-full bg-gray-200" style={{ zIndex: 0 }}></div>
+                <div className="space-y-5">
+                  {/* Web Development Intern (AntStack) */}
+                  <ExperienceCard
+                    role="Web Development Intern"
+                    company="AntStack"
+                    date="May 2025 – Jun 2025"
+                    description="Developed responsive web applications using HTML, CSS, and JavaScript. Implemented reusable UI components and optimized page layouts for better performance and user experience."
+                  />
+                  {/* Data Engineering Intern (AntStack) */}
+                  <ExperienceCard
+                    role="Data Engineering Intern"
+                    company="AntStack"
+                    date="Apr 2024 – Jul 2024"
+                    description="Built and executed Apache Spark ETL pipelines on Databricks to process large-scale datasets. Performed SQL-based transformations and implemented data validation checks, improving reliability of downstream analytics workflows."
+                  />
+                  {/* Volunteer Experience - Keraleeyam Website */}
+                  <ExperienceCard
+                    role="Web Developer"
+                    company="Keraleeyam"
+                    date="Nov 2024 – Mar 2025"
+                    description="Developed and deployed a website for a school supporting underprivileged children. Implemented responsive design and accessibility-focused UI components to improve online visibility."
+                  />
                 </div>
               </div>
             </div>

@@ -1,36 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
-
-const projects = [
-  {
-    title: 'Brain Tumour Detection - Machine Learning',
-    description: 'Designed and implemented a machine learning pipeline to classify brain tumours from MRI images. Performed image preprocessing, feature extraction, and dataset preparation for model training. Analysed model outputs and failure cases to understand system behavior across different inputs.',
-    year: '2025',
-    tags: ['Python', 'Machine Learning', 'Computer Vision', 'TensorFlow', 'OpenCV', 'Data Analysis'],
-    category: 'Machine Learning',
-    status: 'Completed'
-  },
-  {
-    title: 'Sonia\'s Realty Media – Website Development',
-    description: 'Designed and developed a production-ready real estate website using React.js and Tailwind CSS. Implemented state management with React Hooks and reusable UI components. Built fully responsive layouts optimized for mobile, tablet, and desktop devices.',
-    year: '2025',
-    tags: ['React.js', 'Tailwind CSS', 'JavaScript', 'Responsive Design', 'UI/UX'],
-    category: 'Web Development',
-    status: 'Live'
-  },
-  {
-    title: 'Keraleeyam - Web Development',
-    description: 'Developed and deployed a website for a school supporting underprivileged children. Implemented responsive design and accessibility-focused UI components. Improved online visibility of the organization\'s mission and activities through a structured web presence.',
-    year: '2024-2025',
-    tags: ['Web Development', 'Responsive Design', 'Accessibility', 'HTML5', 'CSS3', 'JavaScript'],
-    category: 'Social Impact Web Development',
-    status: 'Live'
-  }
-];
+import Link from 'next/link';
+import { projects } from '@/lib/projects';
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-16 px-4 bg-gray-50">
+  <section id="projects" className="pt-2 pb-6 px-4 bg-gray-50" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,7 +26,7 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, index) => (
             <motion.div
-              key={project.title}
+              key={project.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: index * 0.1 }}
@@ -64,7 +39,6 @@ export default function Projects() {
                   <div className="w-5 h-5 bg-gray-400 rounded-md"></div>
                 </div>
               </div>
-              
               <div className="p-4 space-y-3">
                 {/* Header */}
                 <div className="space-y-2">
@@ -74,25 +48,22 @@ export default function Projects() {
                     </h3>
                     <div className="text-right flex-shrink-0">
                       <span className="text-xs text-gray-500 block">{project.year}</span>
-                      <span className="inline-block mt-1 px-1.5 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                      <span className={`inline-block mt-1 px-1.5 py-0.5 ${project.status === 'Live' ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'} text-xs font-medium rounded-full`}>
                         {project.status}
                       </span>
                     </div>
                   </div>
-                  
                   <span className="inline-block px-2 py-0.5 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
-                    {project.category}
+                    {project.subtitle}
                   </span>
                 </div>
-                
                 {/* Description */}
                 <p className="text-gray-600 leading-relaxed text-xs line-clamp-3">
                   {project.description}
                 </p>
-                
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1">
-                  {project.tags.slice(0, 4).map((tag) => (
+                  {project.stack.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
                       className="px-1.5 py-0.5 bg-gray-50 text-gray-700 text-xs font-medium rounded border border-gray-200 hover:bg-gray-100 transition-colors duration-200"
@@ -100,21 +71,20 @@ export default function Projects() {
                       {tag}
                     </span>
                   ))}
-                  {project.tags.length > 4 && (
+                  {project.stack.length > 4 && (
                     <span className="px-1.5 py-0.5 text-gray-500 text-xs">
-                      +{project.tags.length - 4}
+                      +{project.stack.length - 4}
                     </span>
                   )}
                 </div>
-                
                 {/* Action */}
                 <div className="pt-2 border-t border-gray-100">
-                  <button className="text-gray-600 hover:text-gray-900 font-medium text-xs transition-colors duration-200 flex items-center gap-1 group/btn">
-                    View Project 
+                  <Link href={`/projects/${project.slug}`} className="text-gray-600 hover:text-gray-900 font-medium text-xs transition-colors duration-200 flex items-center gap-1 group/btn">
+                    View Project
                     <svg className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,6 +29,36 @@ export const ContactMe = ({
     url: "https://linkedin.com/in/yourusername",
   },
 }: ContactMeProps) => {
+  // Controlled state
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [company, setCompany] = useState(""); // honeypot
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess("");
+    setError("");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ firstName, lastName, email: formEmail, message, company }),
+    });
+    const data = await res.json();
+    setLoading(false);
+    if (res.ok) {
+      setSuccess("Message sent ✅");
+  setFirstName(""); setLastName(""); setFormEmail(""); setMessage(""); setCompany("");
+    } else {
+      setError(data.error || "Something went wrong.");
+    }
+  }
+
   return (
     <section id="contact" className="py-24">
       {/* ✅ This wrapper is the key fix: it centers + adds padding properly */}
@@ -95,7 +126,7 @@ export const ContactMe = ({
 
           {/* Right side form */}
           <div className="w-full rounded-xl border bg-background p-8 shadow-sm sm:p-10">
-            <form className="flex flex-col gap-6">
+            <form className="flex flex-col gap-6" onSubmit={handleSubmit} autoComplete="off">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="grid w-full items-center gap-1.5">
                   <Label htmlFor="firstname">First Name</Label>
@@ -104,6 +135,8 @@ export const ContactMe = ({
                     id="firstname"
                     placeholder="First Name"
                     required
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
                   />
                 </div>
 
@@ -114,13 +147,22 @@ export const ContactMe = ({
                     id="lastname"
                     placeholder="Last Name"
                     required
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
                   />
                 </div>
               </div>
 
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="email">Email</Label>
-                <Input type="email" id="email" placeholder="Email" required />
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  required
+                  value={formEmail}
+                  onChange={e => setFormEmail(e.target.value)}
+                />
               </div>
 
               <div className="grid w-full gap-1.5">
@@ -129,12 +171,30 @@ export const ContactMe = ({
                   placeholder="Type your message here."
                   id="message"
                   required
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                />
+                {/* Honeypot field (hidden from users) */}
+                <input
+                  type="text"
+                  name="company"
+                  value={company}
+                  onChange={e => setCompany(e.target.value)}
+                  autoComplete="off"
+                  tabIndex={-1}
+                  style={{ display: 'none' }}
                 />
               </div>
 
-              <Button className="w-full rounded-md bg-black text-white hover:bg-black/90">
-                Send Message
+              <Button
+                className="w-full rounded-md bg-black text-white hover:bg-black/90"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send Message"}
               </Button>
+              {success && <div className="text-green-600 text-sm mt-2">{success}</div>}
+              {error && <div className="text-red-600 text-sm mt-2">{error}</div>}
             </form>
           </div>
         </div>
