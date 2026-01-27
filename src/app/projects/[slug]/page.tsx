@@ -17,12 +17,11 @@ function getProject(slug: string): Project | undefined {
 }
 
 // Dynamic project page
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  // In Next.js App Router, params may be a Promise in some cases (edge, static, etc.)
+  // Always await params for robustness
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug || '';
   const project = getProject(slug);
 
   if (!project) {
@@ -31,19 +30,6 @@ export default async function ProjectPage({
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-4">
-      {project.heroImage ? (
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-sm mb-8">
-          <Image
-            src={project.heroImage}
-            alt={`${project.title} hero`}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 1200px"
-          />
-        </div>
-      ) : null}
-
       {/* Header */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">

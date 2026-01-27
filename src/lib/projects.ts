@@ -23,7 +23,7 @@ export const projects: Project[] = [
     slug: 'brain-tumour-detection',
     title: 'Brain Tumour Detection System',
     subtitle: 'AI-powered medical imaging for early diagnosis',
-    heroImage: '/projects/brain-tumour-detection/cover.png',
+    heroImage: '/images/BTD.jpg', // Updated to use the image from public/images
     description: 'Machine learning system to detect brain tumours from MRI scans.',
     longDescription: 'A full-stack ML project that leverages deep learning to assist radiologists in identifying brain tumours from MRI images. The system includes data preprocessing, model training, and a user-friendly interface for predictions.',
     year: '2025',
@@ -52,7 +52,7 @@ export const projects: Project[] = [
       'Integrate with hospital systems',
     ],
     images: [
-      '/projects/brain-tumour-detection/cover.png',
+      '/images/BTD.jpg',
       '/projects/brain-tumour-detection/1.png',
       '/projects/brain-tumour-detection/2.png',
     ],
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     slug: 'sonias-realty-media',
     title: 'Sonia’s Realty Media',
     subtitle: 'Modern real estate web platform',
-    heroImage: '/projects/sonias-realty-media/cover.png',
+    heroImage: '/images/SRM.jpg', // Updated to use the image from public/images
     description: 'Responsive website for a real estate business, built with React and Tailwind.',
     longDescription: 'A production-ready real estate website featuring property listings, agent profiles, and lead capture forms. Built for performance and mobile usability.',
     year: '2025',
@@ -90,7 +90,7 @@ export const projects: Project[] = [
       'Integrate chat support',
     ],
     images: [
-      '/projects/sonias-realty-media/cover.png',
+      '/images/SRM.jpg',
       '/projects/sonias-realty-media/1.png',
       '/projects/sonias-realty-media/2.png',
     ],
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     slug: 'keraleeyam',
     title: 'Keraleeyam',
     subtitle: 'Nonprofit school website',
-    heroImage: '/projects/keraleeyam/cover.png',
+    heroImage: '/images/K.jpg', // Updated to use the image from public/images
     description: 'Website for a school supporting underprivileged children.',
     longDescription: 'A web platform to showcase the mission, activities, and impact of Keraleeyam, a nonprofit school. Features include event galleries, donation info, and volunteer sign-up.',
     year: '2024-2025',
@@ -127,7 +127,7 @@ export const projects: Project[] = [
       'Enable online donations',
     ],
     images: [
-      '/projects/keraleeyam/cover.png',
+      '/images/K.jpg',
       '/projects/keraleeyam/1.png',
       '/projects/keraleeyam/2.png',
     ],
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     slug: 'wood-solutions',
     title: 'Wood Solutions',
     subtitle: 'Custom furniture e-commerce',
-    heroImage: '/projects/wood-solutions/cover.png',
+    heroImage: '/images/WS.jpg', // Updated to use the image from public/images
     description: 'E-commerce site for custom wood furniture, with product configurator.',
     longDescription: 'A full-featured e-commerce platform for a custom furniture business. Includes product configurator, shopping cart, and order management.',
     year: '2025',
@@ -166,7 +166,7 @@ export const projects: Project[] = [
       'Expand product catalog',
     ],
     images: [
-      '/projects/wood-solutions/cover.png',
+      '/images/WS.jpg',
       '/projects/wood-solutions/1.png',
       '/projects/wood-solutions/2.png',
     ],
