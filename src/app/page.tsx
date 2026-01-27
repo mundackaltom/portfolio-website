@@ -15,7 +15,9 @@ export default function Home() {
         <div className="w-full flex justify-center my-6">
           <div className="h-1 w-16 bg-gray-200 rounded-full" />
         </div>
-        <Projects />
+        <section id="work">
+          <Projects />
+        </section>
         <ContactSection />
       </main>
       <ClientOnlyFooter />

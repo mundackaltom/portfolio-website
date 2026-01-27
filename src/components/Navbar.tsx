@@ -7,13 +7,22 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'About', href: '/about' },
-    { name: 'Work', href: '/work' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'About', href: '/#about' },
+    { name: 'Work', href: '/#work' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50">
+    <>
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+        section[id] {
+          scroll-margin-top: 80px;
+        }
+      `}</style>
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Name */}
@@ -22,9 +31,9 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <a href="#intro" className="text-lg font-serif font-light text-gray-900 hover:text-gray-600 transition-colors" style={{fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em'}}>
+            <Link href="/#intro" className="text-lg font-serif font-light text-gray-900 hover:text-gray-600 transition-colors" style={{fontFamily: '"Playfair Display", Georgia, serif', letterSpacing: '-0.01em'}}>
               Tom Jimmy
-            </a>
+            </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -86,5 +95,6 @@ export default function Navbar() {
         )}
       </div>
     </nav>
+    </>
   );
 }
