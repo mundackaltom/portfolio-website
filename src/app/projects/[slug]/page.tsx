@@ -4,29 +4,29 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/projects';
 
-
+// Robust slug normalization (trim + lowercase)
 function normalizeSlug(slug: string | undefined | null) {
   if (!slug || typeof slug !== 'string') return '';
   return slug.trim().toLowerCase();
 }
 
+// Find project by normalized slug
 function getProject(slug: string): Project | undefined {
   const safeSlug = normalizeSlug(slug);
   return projects.find((p) => normalizeSlug(p.slug) === safeSlug);
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = getProject(params.slug);
+// Dynamic project page
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = getProject(slug);
 
   if (!project) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] py-24 px-4">
-        <div className="text-5xl mb-4">🚫</div>
-        <h1 className="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Project Not Found</h1>
-        <p className="text-gray-600 mb-6">Sorry, we couldn&apos;t find a project for this URL.</p>
-        <Link href="/work" className="text-blue-600 underline text-base font-medium">Back to Work</Link>
-      </div>
-    );
+    notFound();
   }
 
   return (
@@ -107,9 +107,17 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
       {/* Navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-8">
-        <Link href="/#work" className="text-blue-600 underline">Back to Work</Link>
-        {/* Next/Prev project links (optional) could go here */}
+        <Link href="/work" className="text-blue-600 underline">Back to Work</Link>
       </div>
     </div>
   );
 }
+
+/*
+IMPORTANT:
+- Your folder must be named: src/app/projects/[slug]/page.tsx (with [slug] in square brackets)
+- Your file must be named: page.tsx
+- If you change the folder/file structure, restart your dev server!
+- If you add or rename dynamic routes, always restart the dev server: Ctrl+C then npm run dev
+- No changes needed to next.config.js unless you use a custom basePath or trailingSlash
+*/
