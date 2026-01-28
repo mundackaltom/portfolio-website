@@ -34,7 +34,6 @@ export const ContactMe = ({
   const [lastName, setLastName] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [company, setCompany] = useState(""); // honeypot
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -44,18 +43,31 @@ export const ContactMe = ({
     setLoading(true);
     setSuccess("");
     setError("");
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ firstName, lastName, email: formEmail, message, company }),
-    });
-    const data = await res.json();
-    setLoading(false);
-    if (res.ok) {
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email: formEmail, message }),
+      });
+
+      if (!res.ok) {
+        setError("Failed to send message. Please try again later.");
+        console.error("Error response from API:", res.status, res.statusText);
+        return;
+      }
+
+      const data = await res.json();
       setSuccess("Message sent ✅");
-  setFirstName(""); setLastName(""); setFormEmail(""); setMessage(""); setCompany("");
-    } else {
-      setError(data.error || "Something went wrong.");
+      setFirstName("");
+      setLastName("");
+      setFormEmail("");
+      setMessage("");
+    } catch (err) {
+      setError("Failed to send message. Please try again later.");
+      console.error("Error submitting contact form:", err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -173,16 +185,6 @@ export const ContactMe = ({
                   required
                   value={message}
                   onChange={e => setMessage(e.target.value)}
-                />
-                {/* Honeypot field (hidden from users) */}
-                <input
-                  type="text"
-                  name="company"
-                  value={company}
-                  onChange={e => setCompany(e.target.value)}
-                  autoComplete="off"
-                  tabIndex={-1}
-                  style={{ display: 'none' }}
                 />
               </div>
 

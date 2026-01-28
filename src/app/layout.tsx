@@ -15,7 +15,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Tom Jimmy - Portfolio",
+  title: "Portfolio",
   description: "Crafting beautiful digital experiences with modern technologies and thoughtful design.",
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`antialiased ${specialElite.variable} ${playfairDisplay.variable}`}>
+      <body className={`antialiased ${specialElite.className} ${playfairDisplay.className}`} suppressHydrationWarning>
         {children}
       </body>
     </html>

@@ -1,50 +1,73 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { firstName, lastName, email, message, company } = body;
+    const { firstName, lastName, email, message } = body;
 
-    // Honeypot spam protection
-    if (company && company.trim() !== '') {
-      return NextResponse.json({ error: 'Spam detected.' }, { status: 400 });
-    }
-
-    // Validation
+    // Basic validation
     if (!firstName || !lastName || !email || !message) {
-      return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
-    }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 });
-    }
-    if (message.length < 10) {
-      return NextResponse.json({ error: 'Message must be at least 10 characters.' }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
-    const to = process.env.CONTACT_TO_EMAIL;
-    const from = process.env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev';
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.CONTACT_TO_EMAIL;
+    const fromEmail =
+      process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
-    const html = `
-      <h2>New message from portfolio contact form</h2>
-      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br/>')}</p>
-    `;
+    if (!resendApiKey || !toEmail) {
+      console.error("Resend not configured", {
+        hasApiKey: !!resendApiKey,
+        toEmail,
+      });
 
-    await resend.emails.send({
-      from,
-      to,
-      subject: 'New message from portfolio contact form',
-      html,
-      reply_to: email,
+      return NextResponse.json(
+        { success: false, error: "Email service not configured" },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(resendApiKey);
+
+    // Send email
+    const result = await resend.emails.send({
+      from: `Contact Form <${fromEmail}>`,
+      to: [toEmail],
+      subject: `New message from ${firstName} ${lastName}`,
+      text: `
+Name: ${firstName} ${lastName}
+Email: ${email}
+
+Message:
+${message}
+      `.trim(),
+      replyTo: email,
     });
 
-    return NextResponse.json({ success: true });
+    console.log("Email sent via Resend:", result);
+
+    return NextResponse.json(
+      { success: true, id: result.data?.id ?? null },
+      { status: 200 }
+    );
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to send message.' }, { status: 500 });
+    console.error("Contact API error:", error);
+
+    return NextResponse.json(
+      { success: false, error: "Internal server error" },
+      { status: 500 }
+    );
   }
+}
+
+// Explicitly block other methods
+export async function GET() {
+  return NextResponse.json(
+    { success: false, error: "Method not allowed" },
+    { status: 405 }
+  );
 }
