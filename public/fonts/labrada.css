@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Labrada';
+  src: url('/fonts/Labrada-Regular.woff2') format('woff2'),
+       url('/fonts/Labrada-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

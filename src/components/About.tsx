@@ -44,10 +44,10 @@ export default function About() {
               <h2 className="text-3xl font-extrabold text-gray-900 mb-1">About Me</h2>
               <div className="text-gray-500 text-base mb-4">Who I am & what I build</div>
               <p className="text-lg text-gray-800 mb-6">
-                Final-year CSE (Data Science) student passionate about building modern web apps and data solutions. I’ve worked on Spark-based ETL pipelines and responsive applications using React & Next.js.
+                Final-year CSE (Data Science) student who enjoys building and working on real-world projects. I like turning ideas into working products and learning by building practical, hands-on projects across web and data.
               </p>
               {/* Quick Stats Row */}
-              <div className="flex flex-wrap gap-3 mb-6">
+              <div className="flex flex-wrap gap-3 mb-3">
                 <span className="inline-flex items-center gap-1 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
                   <MapPin className="w-4 h-4 text-gray-500" /> Bangalore, India
                 </span>
@@ -60,12 +60,7 @@ export default function About() {
               </div>
               {/* Skills Chips */}
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">React</span>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">Next.js</span>
-                <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">Apache Spark</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">ETL</span>
-                <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">SQL</span>
-                <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold">Data Science</span>
+                {/* Removed skill buttons */}
               </div>
             </div>
             {/* Education Timeline Card */}

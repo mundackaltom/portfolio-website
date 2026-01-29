@@ -7,7 +7,7 @@ function Footerdemo() {
   return (
     <footer className="relative border-t bg-white text-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+        <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-12 md:gap-16">
           {/* Newsletter */}
           <div className="flex flex-col gap-4">
             <h3 className="mb-0 text-lg font-semibold">Stay Connected</h3>
@@ -17,40 +17,31 @@ function Footerdemo() {
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-col gap-4 text-left">
+          <div className="flex flex-col gap-4">
             <h3 className="mb-0 text-lg font-semibold">Quick Links</h3>
-            <nav className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+            <nav className="flex flex-wrap justify-center md:justify-start items-center gap-x-4 gap-y-2 text-sm">
               <a href="#" className="transition-colors hover:text-gray-900 text-gray-600">
                 Home
               </a>
               <span className="mx-1">·</span>
-              <a
-                href="#about"
-                className="transition-colors hover:text-gray-900 text-gray-600"
-              >
+              <a href="#about" className="transition-colors hover:text-gray-900 text-gray-600">
                 About
               </a>
               <span className="mx-1">·</span>
-              <a
-                href="#projects"
-                className="transition-colors hover:text-gray-900 text-gray-600"
-              >
+              <a href="#projects" className="transition-colors hover:text-gray-900 text-gray-600">
                 Work
               </a>
               <span className="mx-1">·</span>
-              <a
-                href="#contact"
-                className="transition-colors hover:text-gray-900 text-gray-600"
-              >
+              <a href="#contact" className="transition-colors hover:text-gray-900 text-gray-600">
                 Contact
               </a>
             </nav>
           </div>
 
           {/* Follow Me */}
-          <div className="flex flex-col gap-4 text-left">
+          <div className="flex flex-col gap-4">
             <h3 className="mb-0 text-lg font-semibold">Follow Me</h3>
-            <div className="flex items-center gap-6 justify-start">
+            <div className="flex justify-center md:justify-start items-center gap-6">
               <a
                 href="mailto:mundackaltom@gmail.com"
                 className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
