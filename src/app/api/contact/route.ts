@@ -1,8 +1,34 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+const rateLimitMap = new Map();
+const RATE_LIMIT = 3; // Maximum requests per IP
+const RATE_LIMIT_WINDOW = 60 * 1000; // 60 seconds
+
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || "unknown";
+    const now = Date.now();
+
+    if (!rateLimitMap.has(ip)) {
+      rateLimitMap.set(ip, []);
+    }
+
+    const timestamps = rateLimitMap.get(ip);
+    const recentTimestamps = timestamps.filter(
+      (timestamp: number) => now - timestamp < RATE_LIMIT_WINDOW
+    );
+
+    if (recentTimestamps.length >= RATE_LIMIT) {
+      return NextResponse.json(
+        { success: false, error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
+    recentTimestamps.push(now);
+    rateLimitMap.set(ip, recentTimestamps);
+
     const body = await req.json();
     const { firstName, lastName, email, message } = body;
 
