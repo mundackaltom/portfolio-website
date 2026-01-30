@@ -130,7 +130,7 @@ export default function About() {
                     role="Web Developer"
                     company="Keraleeyam"
                     date="Nov 2024 – Mar 2025"
-                    description="Developed and deployed a website for a school supporting underprivileged children. Implemented responsive design and accessibility-focused UI components to improve online visibility."
+                    description="Built and deployed a responsive website for Keraleeyam, a community-based charity organization. The platform highlights social service, charity initiatives, and community impact by showcasing activities, events, and outreach programs."
                   />
                 </div>
               </div>
