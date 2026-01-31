@@ -15,8 +15,11 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Tom Jimmy",
   description: "Crafting beautiful digital experiences with modern technologies and thoughtful design.",
+  icons: {
+    icon: "/images/favicon.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +32,12 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+  <link rel="icon" type="image/jpeg" href="/images/favicon.jpg?v=20260131-1" />
+  <link rel="shortcut icon" type="image/jpeg" href="/images/favicon.jpg?v=20260131-1" />
+  <link rel="apple-touch-icon" href="/images/favicon.jpg?v=20260131-1" />
+  <link rel="icon" sizes="32x32" href="/images/favicon.jpg?v=20260131-1" type="image/jpeg" />
+  <link rel="icon" sizes="192x192" href="/images/favicon.jpg?v=20260131-1" type="image/jpeg" />
+  <meta name="msapplication-TileImage" content="/images/favicon.jpg?v=20260131-1" />
       </head>
       <body className={`antialiased ${specialElite.className} ${playfairDisplay.className}`} suppressHydrationWarning>
         {children}
