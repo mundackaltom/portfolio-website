@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/favicon.jpg",
   },
+  verification: {
+    google: "umkrXMXfe68xrSRS1FwMXcid4Yvw2SYH3WOUZHlxHVI",
+  },
 };
 
 export default function RootLayout({
@@ -32,12 +35,13 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-  <link rel="icon" type="image/jpeg" href="/images/favicon.jpg?v=20260131-1" />
-  <link rel="shortcut icon" type="image/jpeg" href="/images/favicon.jpg?v=20260131-1" />
-  <link rel="apple-touch-icon" href="/images/favicon.jpg?v=20260131-1" />
-  <link rel="icon" sizes="32x32" href="/images/favicon.jpg?v=20260131-1" type="image/jpeg" />
-  <link rel="icon" sizes="192x192" href="/images/favicon.jpg?v=20260131-1" type="image/jpeg" />
-  <meta name="msapplication-TileImage" content="/images/favicon.jpg?v=20260131-1" />
+        <meta name="google-site-verification" content="umkrXMXfe68xrSRS1FwMXcid4Yvw2SYH3WOUZHlxHVI" />
+        <link rel="icon" type="image/jpeg" href="/images/favicon.jpg?v=20260131-1" />
+        <link rel="shortcut icon" type="image/jpeg" href="/images/favicon.jpg?v=20260131-1" />
+        <link rel="apple-touch-icon" href="/images/favicon.jpg?v=20260131-1" />
+        <link rel="icon" sizes="32x32" href="/images/favicon.jpg?v=20260131-1" type="image/jpeg" />
+        <link rel="icon" sizes="192x192" href="/images/favicon.jpg?v=20260131-1" type="image/jpeg" />
+        <meta name="msapplication-TileImage" content="/images/favicon.jpg?v=20260131-1" />
       </head>
       <body className={`antialiased ${specialElite.className} ${playfairDisplay.className}`} suppressHydrationWarning>
         {children}
