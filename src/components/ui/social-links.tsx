@@ -67,7 +67,7 @@ export function SocialLinks({ className }: SocialLinksProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className={cn("flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4", className)}
+      className={cn("flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 sm:gap-4", className)}
     >
       {socialLinks.map((link) => (
         <motion.a
@@ -78,7 +78,7 @@ export function SocialLinks({ className }: SocialLinksProps) {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.01, y: 0 }}
           whileTap={{ scale: 0.99 }}
-          className="flex items-center gap-3 px-5 py-3 bg-white border-2 border-black rounded-md hover:bg-gray-50 transition-all duration-200 group w-full sm:w-auto justify-center"
+          className="flex items-center gap-3 px-5 py-3 bg-white border-2 border-black rounded-md hover:bg-gray-50 transition-all duration-200 group w-full sm:w-auto justify-center sm:justify-start"
         >
           <span className="text-black group-hover:text-gray-700 transition-colors duration-200">
             {link.icon}

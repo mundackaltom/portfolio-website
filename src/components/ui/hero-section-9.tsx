@@ -145,8 +145,8 @@ const HeroSection = ({ actions, images, className }: HeroSectionProps) => {
             ))}
           </motion.div>
           {/* Social Links */}
-          <motion.div className="mt-12 w-full px-2 sm:px-0" variants={itemVariants}>
-            <SocialLinks className="flex justify-end gap-6 lg:gap-8" />
+          <motion.div className="mt-12 px-2 sm:px-0" variants={itemVariants}>
+            <SocialLinks className="gap-6 lg:gap-8" />
           </motion.div>
         </motion.div>
 
