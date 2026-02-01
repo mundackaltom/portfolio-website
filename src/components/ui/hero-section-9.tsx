@@ -106,7 +106,7 @@ const HeroSection = ({ actions, images, className }: HeroSectionProps) => {
       <div className="container mx-auto grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
         {/* Left Column: Text Content */}
         <motion.div
-          className="flex flex-col items-center text-center lg:items-start lg:text-left"
+          className="flex flex-col items-center text-center lg:items-start lg:text-left px-4 sm:px-6 lg:px-0"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -118,7 +118,7 @@ const HeroSection = ({ actions, images, className }: HeroSectionProps) => {
             <span className="block">Hello, I'm</span>
             <span className="block" style={{ fontFamily: 'Labrada, serif', fontWeight: 300 }}>Tom Jimmy</span>
           </motion.h1>
-          <motion.p className="mt-6 max-w-md text-lg text-muted-foreground" variants={itemVariants}>
+          <motion.p className="mt-6 max-w-md text-lg text-muted-foreground px-2 sm:px-0" variants={itemVariants}>
             Passionate about creating solutions that make a difference.
           </motion.p>
           <motion.div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start" variants={itemVariants}>
@@ -145,7 +145,7 @@ const HeroSection = ({ actions, images, className }: HeroSectionProps) => {
             ))}
           </motion.div>
           {/* Social Links */}
-          <motion.div className="mt-12" variants={itemVariants}>
+          <motion.div className="mt-12 w-full px-2 sm:px-0" variants={itemVariants}>
             <SocialLinks className="flex justify-end gap-6 lg:gap-8" />
           </motion.div>
         </motion.div>
