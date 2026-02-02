@@ -89,8 +89,14 @@ export default function About() {
                 <span className="text-lg font-bold text-gray-900">Certifications</span>
               </div>
               <div className="text-gray-500 text-sm mb-2">Professional credentials & ongoing learning</div>
-              <div className="flex flex-wrap gap-2 mb-2">
-                <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs font-semibold">Google Data Analytics Professional Certificate</span>
+              <div className="flex flex-wrap gap-2 mb-2 max-w-2xl">
+                <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs font-semibold">Google UX Design Professional Certificate</span>
+                <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs font-semibold">Ongoing</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs font-semibold">California Institute of the Arts UI / UX Design Specialization</span>
+                <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs font-semibold">Ongoing</span>
+                <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs font-semibold">University of Michigan User Experience Research and Design Specialization</span>
+                <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs font-semibold">Ongoing</span>
+                <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded-full text-xs font-semibold">Adobe Graphic Designer: Design that Demands Attention Professional Certificate</span>
                 <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs font-semibold">Ongoing</span>
               </div>
               <div className="text-gray-500 text-xs">Coursera</div>
